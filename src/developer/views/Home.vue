@@ -86,17 +86,17 @@
 
 <script>
 
-export default {
-  name: 'home',
-  components: {
-  },
-  methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
+  export default {
+    name: 'home',
+    components: {
     },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
+    methods: {
+      handleOpen(key, keyPath) {
+        console.log(key, keyPath);
+      },
+      handleClose(key, keyPath) {
+        console.log(key, keyPath);
+      }
     }
   }
-}
 </script>
