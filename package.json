@@ -3,8 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "node build.js && vue-cli-service serve",
+    "serve-operation": "node build.js --operation && vue-cli-service serve",
+    "serve-developer": "node build.js --developer && vue-cli-service serve",
+    "serve-carMachine": "node build.js --carMachine && vue-cli-service serve",
+    "build": "vue-cli-service build --pages developer",
+    "build-operation": "node build.js --operation && vue-cli-service build --pages developer",
+    "build-developer": "node build.js --developer && vue-cli-service build --pages developer",
+    "build-carMachine": "node build.js --carMachine && vue-cli-service build --pages developer",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
