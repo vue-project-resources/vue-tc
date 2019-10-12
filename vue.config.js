@@ -1,7 +1,7 @@
 module.exports = {
   "pages": {
-    "developer": {
-      "entry": "src/developer/main.js",
+    "operation": {
+      "entry": "src/car-Machine/main.js",
       "template": "public/index.html",
       "filename": "index.html"
     }
