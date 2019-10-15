@@ -24,7 +24,7 @@ switch (arg) {
     };
     break;
   case 'carMachine':
-    buildConfig.pages.operation = {
+    buildConfig.pages.carMachine = {
       // 页面的入口文件
       entry: 'src/car-Machine/main.js',
       // 页面的模板文件
