@@ -12,15 +12,29 @@
               :border="tableConfig.bordered" style="width: 100%"
               @selection-change="handleSelectionChange"
               @sort-change="sortChange">
-      <el-table-column v-for="(config,index) in tableConfig.columnConfig"
-                       :key="index"
-                       :fixed="config.fixed"
-                       :sortable="config.sortable"
-                       :type="config.type"
-                       :prop="config.key"
-                       :label="config.title"
-                       :width="config.width">
-      </el-table-column>
+      <template v-for="(config,index) in tableConfig.columnConfig" >
+        <el-table-column  v-if="!config.slotName"
+                         :key="index"
+                         :fixed="config.fixed"
+                         :sortable="config.sortable"
+                         :type="config.type"
+                         :prop="config.key"
+                         :label="config.title"
+                         :width="config.width">
+        </el-table-column>
+        <el-table-column  v-if="config.type==='render'&&config.slotName"
+                          :key="index"
+                          :fixed="config.fixed"
+                          :sortable="config.sortable"
+                          :type="config.type"
+                          :prop="config.key"
+                          :label="config.title"
+                          :width="config.width">
+          <template v-if="config.slotName" slot-scope="scope">
+            <slot :name="config.slotName" :row="scope.row" :index="scope.$index"></slot>
+          </template>
+        </el-table-column>
+      </template>
       <el-table-column
         fixed="right"
         label="操作"

@@ -5,9 +5,17 @@
       :page-bean="pageBean"
       :dataSet="tableData"
       @pageChange="pageChange">
+      <template slot-scope="{ row }" slot="aaa">
+        <div>{{row.name}}</div>
+      </template>
+      <template slot-scope="{ row ,index}" slot="bbb">
+        <div @click="click">{{row.id}}</div>
+        <el-badge :value="index" class="item">
+          <el-button size="small">回复</el-button>
+        </el-badge>
+      </template>
     </xc-table>
   </div>
-
 </template>
 
 <script>
@@ -19,7 +27,8 @@
         tableData: [],
         totalData: [],
         tableConfig: {},
-        pageBean: {}
+        pageBean: {},
+        editName: ''
       }
     },
     created() {
@@ -31,6 +40,24 @@
           {title: '省', width: 150, sortable: 'custom', configurable: true, key: 'province'},
           {title: '市', width: 150, sortable: 'custom', configurable: true, key: 'city'},
           {title: '区', width: 150, sortable: 'custom', configurable: true, key: 'address'},
+          {
+            title: '自定义',
+            type: 'render',
+            slotName: 'aaa',
+            width: 150,
+            sortable: 'custom',
+            configurable: true,
+            key: 'address'
+          },
+          {
+            title: '自定义模版',
+            type: 'render',
+            slotName: 'bbb',
+            width: 150,
+            sortable: 'custom',
+            configurable: true,
+            key: 'address'
+          },
           {title: '日期', sortable: 'custom', configurable: true, key: 'date'},
         ],
         topButtons: [
@@ -38,6 +65,7 @@
             text: '新增',
             permissionCode: '03-1-2',
             handle: () => {
+              console.log(this.$refs.render);
             }
           },
           {
@@ -64,6 +92,12 @@
     methods: {
       handleClick(row) {
         console.log(row);
+      },
+      aaa() {
+        console.log(111);
+      },
+      click() {
+        console.log(11212);
       },
       pageChange(pageBean) {
         this.tableData = this.totalData.slice((pageBean.pageIndex - 1) * pageBean.pageSize, (pageBean.pageIndex) * pageBean.pageSize)
