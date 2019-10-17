@@ -7,8 +7,8 @@ module.exports = {
     "hotOnly": true
   },
   "pages": {
-    "developer": {
-      "entry": "src/developer/main.js",
+    "carMachine": {
+      "entry": "src/car-Machine/main.js",
       "template": "public/index.html",
       "filename": "index.html"
     }

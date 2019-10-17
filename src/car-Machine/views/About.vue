@@ -1,59 +1,18 @@
 <template>
   <div>
-    <el-table :data="tableData" border style="width: 100%">
-      <el-table-column
-        fixed
-        prop="date"
-        label="日期"
-        width="150">
-      </el-table-column>
-      <el-table-column
-        prop="name"
-        label="姓名"
-        width="120">
-      </el-table-column>
-      <el-table-column
-        prop="province"
-        label="省份"
-        width="120">
-      </el-table-column>
-      <el-table-column
-        prop="city"
-        label="市区"
-        width="120">
-      </el-table-column>
-      <el-table-column
-        prop="address"
-        label="地址"
-        width="300">
-      </el-table-column>
-      <el-table-column
-        prop="zip"
-        label="邮编"
-        width="120">
-      </el-table-column>
-      <el-table-column
-        fixed="right"
-        label="操作"
-      >
-        <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-          <el-button type="text" size="small">编辑</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+    <xc-table
+      :tableConfig="tableConfig"
+      :page-bean="pageBean"
+      :dataSet="tableData">
+    </xc-table>
   </div>
 
 </template>
 
 <script>
-  export default {
-    methods: {
-      handleClick(row) {
-        console.log(row);
-      }
-    },
+  import {PageBean} from "../../common/components/table/pageBean";
 
+  export default {
     data() {
       return {
         tableData: [{
@@ -84,7 +43,27 @@
           city: '普陀区',
           address: '上海市普陀区金沙江路 1516 弄',
           zip: 200333
-        }]
+        }],
+        tableConfig: {aa: 11},
+        pageBean: {}
+      }
+    },
+    created() {
+      this.tableConfig = {
+        columnConfig: [
+          {type: 'selection', fixed: 'left', width: 65},
+          {title: '姓名', width: 100, sortable: 'custom', configurable: true, key: 'name'},
+          {title: '省', width: 150, sortable: 'custom', configurable: true, key: 'province'},
+          {title: '市', width: 150, sortable: 'custom', configurable: true, key: 'city'},
+          {title: '区', width: 150, sortable: 'custom', configurable: true, key: 'address'},
+          {title: '日期',  sortable: 'custom', configurable: true, key: 'date'},
+        ]
+      };
+      this.pageBean = new PageBean(10, 1, this.tableData.length)
+    },
+    methods: {
+      handleClick(row) {
+        console.log(row);
       }
     }
   }
