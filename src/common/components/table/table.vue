@@ -1,8 +1,17 @@
 <template>
   <div>
-    <el-table :data="dataSet" border style="width: 100%"
-              @sort-change="sortChange"
-    >
+    <!--顶部按钮-->
+    <div style="padding: 12px 0;text-align: left">
+      <el-button v-for="(button,index) in tableConfig.topButtons" :key="index"
+                 @click="topHandle(button)">{{button.text}}
+      </el-button>
+    </div>
+    <!--table主体-->
+    <el-table ref="elTable"
+              :data="dataSet"
+              :border="tableConfig.bordered" style="width: 100%"
+              @selection-change="handleSelectionChange"
+              @sort-change="sortChange">
       <el-table-column v-for="(config,index) in tableConfig.columnConfig"
                        :key="index"
                        :fixed="config.fixed"
@@ -15,16 +24,17 @@
       <el-table-column
         fixed="right"
         label="操作"
-        width="120"
-      >
+        width="120">
         <template slot-scope="scope">
           <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
           <el-button type="text" size="small">编辑</el-button>
         </template>
       </el-table-column>
     </el-table>
-    <div style="text-align:left">
+    <!--分页-->
+    <div style="text-align:left;padding: 20px 0">
       <el-pagination
+        background
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="pageBean.pageIndex"
@@ -38,7 +48,7 @@
 </template>
 
 <script>
-  import {Table, TableColumn} from 'element-ui'
+  import {Table, TableColumn, MessageBox} from 'element-ui'
   import {PageBean} from "./pageBean";
 
   export default {
@@ -66,23 +76,45 @@
       return {}
     },
     created() {
-      console.log(this.tableConfig);
-      console.log(this.dataSet);
-      console.log(this.pageBean);
     },
     methods: {
       handleClick(row) {
         console.log(row);
       },
       sortChange(column) {
-        console.log(column);
+        this.tableConfig.sort(column)
       },
-      handleSizeChange() {
-
+      handleSizeChange(event) {
+        this.pageBean.pageSize = event;
+        this.$emit('pageChange', this.pageBean)
       },
-      handleCurrentChange() {
-
+      handleCurrentChange(event) {
+        this.pageBean.pageIndex = event;
+        this.$emit('pageChange', this.pageBean)
       },
+      handleSelectionChange(data) {
+        console.log(data);
+      },
+      topHandle(operation) {
+        if (this.tableConfig.isLoading) {
+          return;
+        }
+        if (operation.needConfirm) {
+          MessageBox.confirm(operation.confirmContent, '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning',
+            center: true
+          }).then(() => {
+            const data = this.$refs.elTable.selection;
+            operation.handle(data);
+          }).catch(() => {
+          });
+        } else {
+          const data = this.$refs.elTable.selection;
+          operation.handle(data);
+        }
+      }
     }
   }
 </script>
