@@ -9,6 +9,7 @@
     <!--table主体-->
     <el-table ref="elTable"
               :data="dataSet"
+              :max-height="tableConfig.maxHeight"
               :border="tableConfig.bordered" style="width: 100%"
               @selection-change="handleSelectionChange"
               @sort-change="sortChange">
