@@ -85,10 +85,12 @@
 </template>
 
 <script>
-
   export default {
     name: 'home',
     components: {
+    },
+    mounted() {
+        //console.log(configApi);
     },
     methods: {
       handleOpen(key, keyPath) {
