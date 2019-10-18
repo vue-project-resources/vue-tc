@@ -4,7 +4,7 @@ module.exports = {
     port: 8080, // 端口号
     disableHostCheck: true,
     open: true, // 配置自动启动浏览器
-    hotOnly: true // 热更新
+    hotOnly: true, // 热更新
     // proxy: {
     // '/': {
     //   target: 'http://wwenj.com',
