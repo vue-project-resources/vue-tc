@@ -34,6 +34,7 @@
     created() {
       this.tableConfig = {
         bordered: false,
+        maxHeight: 400,
         columnConfig: [
           {type: 'selection', fixed: 'left', width: 65},
           {title: '姓名', width: 100, sortable: 'custom', configurable: true, key: 'name'},
