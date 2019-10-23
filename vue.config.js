@@ -7,10 +7,11 @@ module.exports = {
     "hotOnly": true
   },
   "pages": {
-    "carMachine": {
-      "entry": "src/car-Machine/main.js",
+    "developer": {
+      "entry": "src/developer/main.js",
       "template": "public/index.html",
       "filename": "index.html"
     }
-  }
+  },
+  "outputDir": "developer"
 }
