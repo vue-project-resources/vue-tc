@@ -4,6 +4,7 @@ let arg = process.argv[process.argv.length - 1];
 arg = arg.substring(2, arg.length);
 switch (arg) {
   case 'developer':
+    buildConfig.outputDir = 'dist-developer';
     buildConfig.pages.developer = {
       // 页面的入口文件
       entry: 'src/developer/main.js',
@@ -14,6 +15,7 @@ switch (arg) {
     };
     break;
   case 'operation':
+    buildConfig.outputDir = 'dist-operation';
     buildConfig.pages.operation = {
       // 页面的入口文件
       entry: 'src/operation/main.js',
@@ -24,9 +26,10 @@ switch (arg) {
     };
     break;
   case 'carMachine':
+    buildConfig.outputDir = 'dist-car-machine';
     buildConfig.pages.carMachine = {
       // 页面的入口文件
-      entry: 'src/car-Machine/main.js',
+      entry: 'src/car-machine/main.js',
       // 页面的模板文件
       template: 'public/index.html',
       // build 生成的文件名称  例： dist/index.html
@@ -42,5 +45,6 @@ fs.writeFile('./vue.config.js',
       throw err
     }
     console.log('Init scripts complete.')
+    console.log('执行脚本成功！')
   });
 

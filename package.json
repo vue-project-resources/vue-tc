@@ -6,11 +6,11 @@
     "serve": "node build.js && vue-cli-service serve",
     "serve-operation": "node build.js --operation && vue-cli-service serve",
     "serve-developer": "node build.js --developer && vue-cli-service serve",
-    "serve-carMachine": "node build.js --carMachine && vue-cli-service serve",
+    "serve-car-machine": "node build.js --carMachine && vue-cli-service serve",
     "build": "vue-cli-service build --pages developer",
     "build-operation": "node build.js --operation && vue-cli-service build --pages developer",
     "build-developer": "node build.js --developer && vue-cli-service build --pages developer",
-    "build-carMachine": "node build.js --carMachine && vue-cli-service build --pages developer",
+    "build-car-machine": "node build.js --carMachine && vue-cli-service build --pages developer",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
@@ -18,11 +18,12 @@
     "axios": "^0.19.0",
     "core-js": "^2.6.5",
     "element-ui": "^2.12.0",
+    "lodash": "latest",
     "qs": "^6.9.0",
     "vue": "^2.6.10",
+    "vue-i18n": "^8.15.0",
     "vue-router": "^3.0.3",
-    "vuex": "^3.0.1",
-    "lodash": "latest"
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.11.0",

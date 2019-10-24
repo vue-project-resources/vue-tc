@@ -13,8 +13,8 @@
               :border="tableConfig.bordered" style="width: 100%"
               @selection-change="handleSelectionChange"
               @sort-change="sortChange">
-      <template v-for="(config,index) in tableConfig.columnConfig" >
-        <el-table-column  v-if="!config.slotName"
+      <template v-for="(config,index) in tableConfig.columnConfig">
+        <el-table-column v-if="!config.slotName"
                          :key="index"
                          :fixed="config.fixed"
                          :sortable="config.sortable"
@@ -23,14 +23,14 @@
                          :label="config.title"
                          :width="config.width">
         </el-table-column>
-        <el-table-column  v-if="config.type==='render'&&config.slotName"
-                          :key="index"
-                          :fixed="config.fixed"
-                          :sortable="config.sortable"
-                          :type="config.type"
-                          :prop="config.key"
-                          :label="config.title"
-                          :width="config.width">
+        <el-table-column v-if="config.type==='render'&&config.slotName"
+                         :key="index"
+                         :fixed="config.fixed"
+                         :sortable="config.sortable"
+                         :type="config.type"
+                         :prop="config.key"
+                         :label="config.title"
+                         :width="config.width">
           <template v-if="config.slotName" slot-scope="scope">
             <slot :name="config.slotName" :row="scope.row" :index="scope.$index"></slot>
           </template>
