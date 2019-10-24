@@ -4,6 +4,7 @@ let arg = process.argv[process.argv.length - 1];
 arg = arg.substring(2, arg.length);
 switch (arg) {
   case 'developer':
+    buildConfig.outputDir = 'dist-developer';
     buildConfig.pages.developer = {
       // 页面的入口文件
       entry: 'src/developer/main.js',
@@ -14,6 +15,7 @@ switch (arg) {
     };
     break;
   case 'operation':
+    buildConfig.outputDir = 'dist-operation';
     buildConfig.pages.operation = {
       // 页面的入口文件
       entry: 'src/operation/main.js',
@@ -24,6 +26,7 @@ switch (arg) {
     };
     break;
   case 'carMachine':
+    buildConfig.outputDir = 'dist-carMachine';
     buildConfig.pages.carMachine = {
       // 页面的入口文件
       entry: 'src/car-Machine/main.js',

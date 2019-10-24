@@ -6,12 +6,15 @@ import store from './core/store/store'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import {beforeEach} from "./core/guard-service/guard-service";
+import i18n from './i18n/i18n'
+
 // 注册拦截器
 router.beforeEach(beforeEach);
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
 new Vue({
-    router,
-    store,
-    render: h => h(App)
+  router,
+  store,
+  i18n,
+  render: h => h(App)
 }).$mount('#app');
