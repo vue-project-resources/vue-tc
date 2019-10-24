@@ -1,8 +1,6 @@
 <template>
     <div>
-        login
-      {{message | capitalize(message)}}
-      <loading></loading>
+        <img src="../assets/timg.gif" width="200" height="200"/>
     </div>
 </template>
 
@@ -10,12 +8,15 @@
 export default {
     data() {
         return {
-            message: "hello world"
+            
         }
-    }
+    },
+    methods: {
+        
+    },
 }
 </script>
 
 <style lang="less" scoped>
-
+    
 </style>
